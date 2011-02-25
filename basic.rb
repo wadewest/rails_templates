@@ -4,4 +4,4 @@ git :init
 git :add => '.'
 git :commit => "-a -m 'Initial commit'"
 
-apply "haml_compass.rb"
+apply "https://github.com/wadewest/rails_templates/raw/master/haml_compass.rb"

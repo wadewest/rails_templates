@@ -16,12 +16,15 @@ initializer "stylesheets.rb", <<-CODE
 require 'fileutils'
 FileUtils.mkdir_p(Rails.root.join("tmp", "stylesheets"))
 Sass::Plugin.on_updating_stylesheet do |template, css|
-	puts "Compiling #{template} to #{css}
+	puts "Compiling \#{template} to \#{css}
 end
 
 Rails.configuration.middleware.insert_before("Rack::Sendfile", "Rack::Static",
-	:urls => ['/stylesheets'], :root => "#{Rails.root}/tmp")
+	:urls => ['/stylesheets'], :root => "\#{Rails.root}/tmp")
 
 CODE
 
-git :commit => "-a -m 'Installed haml and compass'"
+git :add => "config/compass.rb"
+git :add => "config/initializers/stylesheets.rb"
+git :add => "Gemfile"
+git :commit => "-m 'Installed haml and compass, and configured it to work with Heroku.'"

@@ -24,6 +24,13 @@ Rails.configuration.middleware.insert_before("Rack::Sendfile", "Rack::Static",
 
 CODE
 
+file "app/stylesheets/application.scss", <<-CODE
+body h1 {
+	text-size: 20px;
+}
+
+CODE
+
 git :add => "config/compass.rb"
 git :add => "config/initializers/stylesheets.rb"
 git :add => "Gemfile"

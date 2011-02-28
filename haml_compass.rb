@@ -1,5 +1,6 @@
 gem "haml", ">=3.0.25"
 gem "compass", ">=0.10.6"
+gem "haml-rails", :group => :development
 
 file "config/compass.rb", <<-CODE
 project_type = :rails
@@ -31,6 +32,11 @@ body h1 {
 
 CODE
 
+inject_into_file "config/application.rb", :after => "config.generators do |g|\n" do
+  "      g.template_engine :haml\n"
+end
+
+git :add => "config/application.rb"
 git :add => "config/compass.rb"
 git :add => "config/initializers/stylesheets.rb"
 git :add => "Gemfile"
